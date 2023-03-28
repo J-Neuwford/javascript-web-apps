@@ -6,9 +6,11 @@ const fs = require('fs');
 const MessageView = require('./messageView');
 
 describe('MessageView', () => {
-  it('clicks the button', () => {
-    document.body.innerHTML = fs.readFileSync('./index.html');
 
+  beforeEach(() => {
+    document.body.innerHTML = fs.readFileSync('./index.html');
+  })
+  it('clicks the button', () => {
     const view = new MessageView();
 
     const buttonEl = document.querySelector('#show-message-button');
@@ -16,4 +18,14 @@ describe('MessageView', () => {
 
     expect(document.querySelector('#message')).not.toBeNull();
   });
+
+  it('clicks the hide message button', () => {
+    const view = new MessageView();
+    const buttonEl = document.querySelector('#show-message-button');
+    const hideButtonEl = document.querySelector('#hide-message-button');
+    buttonEl.click();
+    hideButtonEl.click();
+
+    expect(document.querySelector('#message')).toBeNull();
+  })
 });
