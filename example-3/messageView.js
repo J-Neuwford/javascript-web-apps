@@ -16,7 +16,8 @@ class MessageView {
   displayMessage() {
     const e = document.createElement('div');
     e.id = 'message';
-    e.innerText = "this message is displayed by JavaScript"
+    const inputEl =  document.querySelector('#message-input');
+    e.innerText = inputEl.value;
     const mainEl = document.querySelector('#main-container');
     mainEl.append(e);
     console.log('new message created');
